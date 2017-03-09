@@ -15,7 +15,7 @@ public class ListNode {
 
  // post: constructs a node with data 0 and null link
  public ListNode() {
-     this("", null);
+     this(null, null);
  }
 
  // post: constructs a node with given data and null link

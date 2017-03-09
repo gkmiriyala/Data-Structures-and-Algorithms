@@ -7,20 +7,9 @@ import helperClasses.MyLinkedList;
 
 public class LinkedListPractice {
 	public static void main(String[] args){ 
-		MyLinkedList list = makeStringLL("abcba");
+		MyLinkedList list = MyLinkedList.makeStringLL("abcbac");
+		MyLinkedList.printLinkedList(revLinkedList(list));
 		System.out.println(isLinkedListPal(list));
-	}
-	
-	/*
-	 * Make a String a Linked List
-	 */
-	
-	public static MyLinkedList makeStringLL(String s) {
-		MyLinkedList list = new MyLinkedList();
-		for (int i=0;i<s.length();i++) {
-			list.add(Character.toString(s.charAt(i)));
-		}
-		return list;
 	}
 	
 	/*
@@ -34,7 +23,7 @@ public class LinkedListPractice {
 		while(curr!=null) {
 			ListNode n = new ListNode(curr.data);
 			n.next = revList.head.next;
-			revList.head=n;
+			revList.head.next=n;
 			curr=curr.next;
 		}
 		return revList;
@@ -45,10 +34,10 @@ public class LinkedListPractice {
 	 */
 	public static boolean isLinkedListPal (MyLinkedList list) {
 		MyLinkedList revList= revLinkedList(list);
-		ListNode curr1 = list.head;
-		ListNode curr2 = revList.head;
+		ListNode curr1 = list.head.next;
+		ListNode curr2 = revList.head.next;
 		while(curr1!=null) {
-			if(curr1.data!=curr2.data)
+			if(!curr1.data.equals(curr2.data))
 				return false;
 			else {
 				curr1=curr1.next;

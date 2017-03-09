@@ -1,12 +1,12 @@
 package helperClasses;
 
 public class MyLinkedList {
-	public ListNode head=null;
+	public ListNode head;
 	
-	
-	public void add(ListNode node) {
-		head = null;
+	public MyLinkedList(){
+		head = new ListNode();
 	}
+	
 	
 	public boolean isEmpty(){
 		return head.next==null;
@@ -20,4 +20,28 @@ public class MyLinkedList {
 		}
 		n.next=node;
 	}
+	
+	/*
+	 * Make a String a Linked List
+	 */
+	public static MyLinkedList makeStringLL(String s) {
+		MyLinkedList list = new MyLinkedList();
+		for (int i=0;i<s.length();i++) {
+			list.add(Character.toString(s.charAt(i)));
+		}
+		return list;
+	}
+	
+	/*
+	 * print Linked list
+	 */
+	public static void printLinkedList(MyLinkedList list) {
+		ListNode curr = list.head.next;
+		while(curr!=null){
+			System.out.println(curr.data);
+			curr=curr.next;
+		}
+	}
+	
+	
 }
