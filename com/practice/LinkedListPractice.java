@@ -2,17 +2,59 @@ package com.practice;
 
 import java.util.LinkedList;
 
-import javax.xml.soap.Node;
+import helperClasses.ListNode;
+import helperClasses.MyLinkedList;
 
 public class LinkedListPractice {
 	public static void main(String[] args){ 
-		
+		MyLinkedList list = makeStringLL("abcba");
+		System.out.println(isLinkedListPal(list));
+	}
+	
+	/*
+	 * Make a String a Linked List
+	 */
+	
+	public static MyLinkedList makeStringLL(String s) {
+		MyLinkedList list = new MyLinkedList();
+		for (int i=0;i<s.length();i++) {
+			list.add(Character.toString(s.charAt(i)));
+		}
+		return list;
+	}
+	
+	/*
+	 * Reverse a Linked List
+	 */
+	public static MyLinkedList revLinkedList(MyLinkedList list) {
+		ListNode curr = list.head.next;
+		MyLinkedList revList= new MyLinkedList();
+		revList.add(curr.data);
+		curr = curr.next;
+		while(curr!=null) {
+			ListNode n = new ListNode(curr.data);
+			n.next = revList.head.next;
+			revList.head=n;
+			curr=curr.next;
+		}
+		return revList;
 	}
 	
 	/*
 	 * 1)	Write an algorithm to determine if a linkedlist is a palindrome
 	 */
-	public boolean isLinkedListPal (LinkedList<String> list) {
+	public static boolean isLinkedListPal (MyLinkedList list) {
+		MyLinkedList revList= revLinkedList(list);
+		ListNode curr1 = list.head;
+		ListNode curr2 = revList.head;
+		while(curr1!=null) {
+			if(curr1.data!=curr2.data)
+				return false;
+			else {
+				curr1=curr1.next;
+				curr2=curr2.next;
+			}
+		}
 		return true;
 	}
 	
