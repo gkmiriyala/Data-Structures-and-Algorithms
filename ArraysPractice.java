@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class ArraysPractice {
 	public static void main(String[] args){
-		int[] arr = {8,7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3};
+		int[] arr = {-3, -1, -2, -8};
 		//System.out.println(elementAppearsOnceInArray(arr));
 		//System.out.println(magicIndexDistinctValues(arr));
 		//System.out.println(duplicateInArray(arr));
-		System.out.println(elementInArrayDifferenceOfOne(arr, 8));
+		//System.out.println(elementInArrayDifferenceOfOne(arr, 8));
+		System.out.println(maxContSum(arr));
 	}
 	
 	/*
@@ -126,5 +127,29 @@ public class ArraysPractice {
 	public ArrayList<ArrayList<Integer>> splitArrayToContainSum(int[] arr) {
 		ArrayList<ArrayList<Integer>> listWithList = new ArrayList<ArrayList<Integer>>();
 		return listWithList;
+	}
+	
+	/*
+	 * Return the maximum sum of set of contiguous values within an array
+	 */
+	public static int maxContSum(int[] arr) {
+		int largest = arr[0];
+		for(int i=0; i<arr.length;){
+			if(arr[i]<0) {
+				if(arr[i]>largest) {
+					largest = arr[i];
+				}
+				i++;
+			}
+			else {
+				int sum=0;
+				while (i<arr.length&&arr[i]>=0){
+					sum = sum + arr[i];
+					i++;
+				}
+				if(sum>largest) largest=sum;
+			}
+		}
+		return largest;
 	}
 }

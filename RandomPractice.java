@@ -36,13 +36,6 @@ public class RandomPractice {
 	}
 	
 	/*
-	 * Return the maximum sum of set of contiguous values within an array
-	 */
-	public int maxContSum(int[] arr) {
-		return 0;
-	}
-	
-	/*
 	 * Return all possible strings based on a given sequence of digits and
 	 * the characters associated with the digits on a phone number pad
 	 */
