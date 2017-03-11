@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class StringsPractice {
 	public static void main(String[] args) {
-		StringsPractice pal = new StringsPractice();
 		//System.out.println(pal.numPal("abaaa"));
 		//System.out.println(pal.isPalRecursion("abaab"));
-		System.out.println(pal.minCharForPal("abcebec"));
+		//System.out.println(pal.minCharForPal("abcebec"));
+		System.out.print(getLongestCommonSubsequence("happy", "papy"));
 	}
 	
 	/*
@@ -15,7 +15,7 @@ public class StringsPractice {
 	 * Output: Below are 5 palindrome sub-strings
 	 * a, aa, aaa, aba, b
 	 */
-	public int numPal(String str) {
+	public static int numPal(String str) {
 		String s = "";
 		ArrayList<String> set = new ArrayList<String>();
 		for (int i = 0; i<str.length();i++) {
@@ -34,7 +34,7 @@ public class StringsPractice {
 	/*
 	 * Return whether a given String is a palindrome or not
 	 */
-	public boolean isPal(String s) {
+	public static boolean isPal(String s) {
 		for (int i = 0; i<s.length(); i++) {
 			if (s.charAt(i)!=(s.charAt(s.length()-1-i)))
 				return false;
@@ -46,7 +46,7 @@ public class StringsPractice {
 	 * Return whether a given String is a palindrome or not
 	 * Use Recursion
 	 */
-	public boolean isPalRecursion(String s) {
+	public static boolean isPalRecursion(String s) {
 		if(s.length()<2)
 			return true;
 		else if((s.charAt(0)!=s.charAt(s.length()-1)))
@@ -57,7 +57,7 @@ public class StringsPractice {
 	/*
 	 * Return the minimum number of characters to add to a String to make it a palindrome
 	 */
-	public int minCharForPal(String s) {
+	public static int minCharForPal(String s) {
 		int left = 0;
 		int right = s.length()-1;
 		while(left<right) {
