@@ -50,7 +50,14 @@ public class LinkedListPractice {
 	/*
 	 * 2)	Write an algorithm to determine if a linkedlist is circular. FOLLOW UP: Determine where the circle meets.
 	 */
-	public boolean isLinkedListCircular(LinkedList<Object> list) {
+	public boolean isLinkedListCircular(MyLinkedList list) {
+		ListNode curr = list.head;
+		while(curr.next!=null){
+			if (curr.next==list.head)
+				return true;
+			else
+				curr=curr.next;
+		}
 		return false;
 	}
 	

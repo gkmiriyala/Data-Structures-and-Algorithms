@@ -58,7 +58,6 @@ public class ArraysPractice {
 				else if(arr[mid]>mid) right=mid-1;
 				else return mid;
 			}
-
 		}
 		return -1;
 	}
