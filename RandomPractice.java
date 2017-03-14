@@ -1,4 +1,4 @@
-package com.practice;
+package commonInterviewQuestions;
 
 import java.util.ArrayList;
 
