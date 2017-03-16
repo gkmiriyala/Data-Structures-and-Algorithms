@@ -8,7 +8,8 @@ public class RandomPractice {
 		//printArr(rand.fibUptoNLoop(3));
 		//System.out.println(rand.fibAtNRecur(3));
 		String[] phoneMap = {"0", "1","ABC","DEF","GHI","JKL","MNO","PQRS","TUV","WXYZ"};
-		System.out.println(allPosStrPhonePad(phoneMap, "527"));
+		System.out.println(allPosStrPhonePad(phoneMap, "525"));
+		System.out.println(allPosStrPhonePad(phoneMap, "525").size());
 	}
 	
 	/*

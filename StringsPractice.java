@@ -1,13 +1,40 @@
 package commonInterviewQuestions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class StringsPractice {
 	public static void main(String[] args) {
-		//System.out.println(pal.numPal("abaaa"));
-		//System.out.println(pal.isPalRecursion("abaab"));
-		//System.out.println(pal.minCharForPal("abcebec"));
-		System.out.print(getLongestCommonSubsequence("happy", "papy"));
+		//System.out.println(numPal("abaaa"));
+		//System.out.println(isPalRecursion("abaab"));
+		//System.out.println(minCharForPal("abcebec"));
+		//System.out.print(getLongestCommonSubsequence("happy", "papy"));
+		System.out.print(strPermutation("hapy", "pyhap"));
+	}
+	
+	/*
+	 * Given two strings, decide if one is a permutation of the other?
+	 */
+	public static boolean strPermutation(String sOne, String sTwo) {
+		if (sOne.length()!=sTwo.length()) return false;
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for(int i = 0; i<sOne.length();i++)
+		{
+			if (!map.containsKey(sOne.charAt(i)))
+				map.put(sOne.charAt(i), 1);
+			else map.put(sOne.charAt(i), map.get(sOne.charAt(i))+1);
+		}
+		for (int j=0;j<sTwo.length();j++)
+		{
+			if (map.containsKey(sTwo.charAt(j)))
+			{
+				if (map.get(sTwo.charAt(j))>0)
+					map.put(sTwo.charAt(j), map.get(sTwo.charAt(j))-1);
+				else return false;
+			}
+			else return false;
+		}
+		return true;
 	}
 	
 	/*
@@ -80,7 +107,7 @@ public class StringsPractice {
 	}
 	
 	/*
-	 * Longest common subsequence
+	 * Length of Longest common subsequence
 	 */
 	public static int getLongestCommonSubsequence(String a, String b){
 		int m = a.length();
