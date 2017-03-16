@@ -36,8 +36,8 @@ public class MyLinkedList {
 	 * print Linked list
 	 */
 	public static void printLinkedList(MyLinkedList list) {
-		ListNode curr = list.head.next;
-		while(curr!=null){
+		ListNode curr = list.head;
+		while(curr.next!=null){
 			System.out.println(curr.data);
 			curr=curr.next;
 		}
