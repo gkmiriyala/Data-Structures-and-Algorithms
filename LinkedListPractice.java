@@ -87,7 +87,7 @@ public class LinkedListPractice {
 	}
 
 	/*
-	 * FOLLOW UP: Determine where a linked list circle meets.
+	 * FOLLOW UP: Determine where a circle in a circular linked list starts.
 	 */
 	public ListNode LinkedListCirculeMeets(MyLinkedList list) {
 		ListNode slow = list.head;
