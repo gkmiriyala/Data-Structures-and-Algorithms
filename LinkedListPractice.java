@@ -88,6 +88,10 @@ public class LinkedListPractice {
 
 	/*
 	 * FOLLOW UP: Determine where a circle in a circular linked list starts.
+	 * Solution: Have a slow reference that moves by 1 step and a 
+	 * fast reference that moves by 2 steps. Once the slow and fast meet
+	 * return one of the references back to the beginning. Start moving both
+	 * references by one. They will eventually meet at the node where the circle starts.
 	 */
 	public ListNode LinkedListCirculeMeets(MyLinkedList list) {
 		ListNode slow = list.head;
@@ -96,21 +100,21 @@ public class LinkedListPractice {
 			slow = slow.next;
 			fast = fast.next.next;
 			if (slow == fast) {
-				slow = list.head;
+				slow = list.head; //You could put slow or fast back to the beginning
 				break;
 			}
 		}
 		while (slow != fast) {
 			slow = slow.next;
-			fast = fast.next.next;
+			fast = fast.next;
 		}
-		return slow;
+		return slow; //You could return slow or fast since they both refer to the same node
 	}
 
 	/*
 	 * Merge all branches of a linked list into a single linked list
 	 */
-	public RandLinkedList mergeLinkedList(RandLinkedList list) {
+	public static RandLinkedList mergeLinkedList(RandLinkedList list) {
 		ListRandNode curr = list.head;
 		while (curr.random != null || curr.next != null) {
 			ListRandNode start = curr.random;
@@ -123,6 +127,74 @@ public class LinkedListPractice {
 			curr.random = null;
 			curr = curr.next;
 		}
+		return list;
+	}
+	
+	/*
+	 * Implement an algorithm to find the kth to the last element in a singly linked list
+	 */
+	public static ListNode findKthToLastElement(ListNode a, int k) {
+		ListNode kthFromLast = a;
+		ListNode last=a;
+		for (int i=0;i<k;i++) {
+			last = last.next;
+		}
+		while(last.next!=null) {
+			kthFromLast = kthFromLast.next;
+			last=last.next;
+		}
+		return kthFromLast;
+	}
+	
+	/*
+	 * Delete a node from a singly linked list given access only to that node
+	 */
+	public static ListNode deleteAccessNodeFromLinkedList(ListNode accessNode) {
+		accessNode.data = accessNode.next.data;
+		accessNode.next = accessNode.next.next;
+		return accessNode;
+	}
+	
+	/*
+	 * Find out if two linked lists intersects and if they do, return the node
+	 * at which they intersect
+	 */
+	public static ListNode whereTwoLinkedListsIntersect(ListNode a, ListNode b) {
+		ListNode c = a;
+		ListNode d = b;
+		int countA = 0;
+		int countB = 0;
+		while (a.next!=null){
+			a=a.next;
+			countA++;
+		}
+		while (b.next!=null){
+			b=b.next;
+			countB++;
+		}
+		int diff = countB-countA;
+		if (diff<0)
+			for (int i=0; i>diff;i--){
+				c=c.next;
+			}
+		else {
+			for (int i=0; i<diff; i++) {
+				d=d.next;
+			}
+		}
+		while (c.next!=null && d.next!=null){
+			if (c==d) return c;
+			c=c.next;
+			d=d.next;
+		}
+		return c;
+	}
+	
+	/*
+	 * Clone a linked list with a random pointer
+	 */
+	public static RandLinkedList cloneLinkedListWithRand(RandLinkedList list) {
+		
 		return list;
 	}
 }
