@@ -13,10 +13,10 @@ public class LinkedListPractice {
 	}
 
 	/*
-	 * Reverse a Linked List iteratively  	
+	 * Reverse a Linked List iteratively
 	 */
 	public static MyLinkedList revLinkedList(MyLinkedList list) {
-		if (list.head==null)
+		if (list.head == null)
 			return list;
 		ListNode curr = list.head.next;
 		ListNode prev = list.head;
@@ -36,7 +36,7 @@ public class LinkedListPractice {
 	 * Reverse a Linked List recursively
 	 */
 	public static MyLinkedList revLinkedListRecursively(MyLinkedList list, ListNode curr, ListNode prev) {
-		if(list.head==null)
+		if (list.head == null)
 			return list;
 		if (curr.next == null) {
 			list.head.next = null;
@@ -88,10 +88,10 @@ public class LinkedListPractice {
 
 	/*
 	 * FOLLOW UP: Determine where a circle in a circular linked list starts.
-	 * Solution: Have a slow reference that moves by 1 step and a 
-	 * fast reference that moves by 2 steps. Once the slow and fast meet
-	 * return one of the references back to the beginning. Start moving both
-	 * references by one. They will eventually meet at the node where the circle starts.
+	 * Solution: Have a slow reference that moves by 1 step and a fast reference
+	 * that moves by 2 steps. Once the slow and fast meet return one of the
+	 * references back to the beginning. Start moving both references by one.
+	 * They will eventually meet at the node where the circle starts.
 	 */
 	public ListNode LinkedListCirculeMeets(MyLinkedList list) {
 		ListNode slow = list.head;
@@ -100,7 +100,8 @@ public class LinkedListPractice {
 			slow = slow.next;
 			fast = fast.next.next;
 			if (slow == fast) {
-				slow = list.head; //You could put slow or fast back to the beginning
+				slow = list.head; // You could put slow or fast back to the
+									// beginning
 				break;
 			}
 		}
@@ -108,7 +109,8 @@ public class LinkedListPractice {
 			slow = slow.next;
 			fast = fast.next;
 		}
-		return slow; //You could return slow or fast since they both refer to the same node
+		return slow; // You could return slow or fast since they both refer to
+						// the same node
 	}
 
 	/*
@@ -129,23 +131,24 @@ public class LinkedListPractice {
 		}
 		return list;
 	}
-	
+
 	/*
-	 * Implement an algorithm to find the kth to the last element in a singly linked list
+	 * Implement an algorithm to find the kth to the last element in a singly
+	 * linked list
 	 */
 	public static ListNode findKthToLastElement(ListNode a, int k) {
 		ListNode kthFromLast = a;
-		ListNode last=a;
-		for (int i=0;i<k;i++) {
+		ListNode last = a;
+		for (int i = 0; i < k; i++) {
 			last = last.next;
 		}
-		while(last.next!=null) {
+		while (last.next != null) {
 			kthFromLast = kthFromLast.next;
-			last=last.next;
+			last = last.next;
 		}
 		return kthFromLast;
 	}
-	
+
 	/*
 	 * Delete a node from a singly linked list given access only to that node
 	 */
@@ -154,7 +157,7 @@ public class LinkedListPractice {
 		accessNode.next = accessNode.next.next;
 		return accessNode;
 	}
-	
+
 	/*
 	 * Find out if two linked lists intersects and if they do, return the node
 	 * at which they intersect
@@ -164,37 +167,59 @@ public class LinkedListPractice {
 		ListNode d = b;
 		int countA = 0;
 		int countB = 0;
-		while (a.next!=null){
-			a=a.next;
+		while (a.next != null) {
+			a = a.next;
 			countA++;
 		}
-		while (b.next!=null){
-			b=b.next;
+		while (b.next != null) {
+			b = b.next;
 			countB++;
 		}
-		int diff = countB-countA;
-		if (diff<0)
-			for (int i=0; i>diff;i--){
-				c=c.next;
+		int diff = countB - countA;
+		if (diff < 0)
+			for (int i = 0; i > diff; i--) {
+				c = c.next;
 			}
 		else {
-			for (int i=0; i<diff; i++) {
-				d=d.next;
+			for (int i = 0; i < diff; i++) {
+				d = d.next;
 			}
 		}
-		while (c.next!=null && d.next!=null){
-			if (c==d) return c;
-			c=c.next;
-			d=d.next;
+		while (c.next != null && d.next != null) {
+			if (c == d)
+				return c;
+			c = c.next;
+			d = d.next;
 		}
 		return c;
 	}
-	
+
 	/*
 	 * Clone a linked list with a random pointer
 	 */
-	public static RandLinkedList cloneLinkedListWithRand(RandLinkedList list) {
-		
+	public static ListRandNode cloneLinkedListWithRand(ListRandNode list) {
+		ListRandNode curr = list;
+		ListRandNode newNode = new ListRandNode(list.data);
+		ListRandNode currTwo = newNode;
+		while (curr.next != null) {
+			currTwo.next = new ListRandNode(curr.next.data);
+			curr = curr.next;
+			currTwo = currTwo.next;
+		}
+		curr=list;
+		currTwo=newNode;
+		while (curr.next!=null){
+			ListRandNode currSt = curr.next;
+			ListRandNode currEnd=curr.random;
+			ListRandNode currTwoEnd=currTwo;
+			while(currEnd!=null && currSt!=currEnd){
+				currSt = currSt.next;
+				currTwoEnd=currTwoEnd.next;
+			}
+			currTwo.random = currTwoEnd;
+			currTwo = currTwo.next;
+			curr = curr.next;
+		}
 		return list;
 	}
 }
