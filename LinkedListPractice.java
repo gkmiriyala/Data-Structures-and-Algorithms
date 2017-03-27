@@ -1,5 +1,7 @@
 package commonInterviewQuestions;
 
+import java.util.HashMap;
+
 import helperClasses.ListNode;
 import helperClasses.ListRandNode;
 import helperClasses.MyLinkedList;
@@ -195,7 +197,7 @@ public class LinkedListPractice {
 	}
 
 	/*
-	 * Clone a linked list with a random pointer
+	 * Clone a linked list with a random pointer (Brute Force)
 	 */
 	public static ListRandNode cloneLinkedListWithRand(ListRandNode list) {
 		ListRandNode curr = list;
@@ -206,20 +208,80 @@ public class LinkedListPractice {
 			curr = curr.next;
 			currTwo = currTwo.next;
 		}
-		curr=list;
-		currTwo=newNode;
-		while (curr.next!=null){
+		curr = list;
+		currTwo = newNode;
+		while (curr.next != null) {
 			ListRandNode currSt = curr.next;
-			ListRandNode currEnd=curr.random;
-			ListRandNode currTwoEnd=currTwo;
-			while(currEnd!=null && currSt!=currEnd){
+			ListRandNode currEnd = curr.random;
+			ListRandNode currTwoEnd = currTwo;
+			while (currEnd != null && currSt != currEnd) {
 				currSt = currSt.next;
-				currTwoEnd=currTwoEnd.next;
+				currTwoEnd = currTwoEnd.next;
 			}
 			currTwo.random = currTwoEnd;
 			currTwo = currTwo.next;
 			curr = curr.next;
 		}
 		return list;
+	}
+
+	/*
+	 * Clone a linked list with a random pointer (Clone, Merge and unlink)
+	 */
+	public static ListRandNode cloneLinkedListWithRandMergeAndUntangle(ListRandNode old) {
+		ListRandNode current = old;
+		while (current != null) {
+			ListRandNode newNode = new ListRandNode(current.data);
+			newNode.next = current.next;
+			current.next = newNode.next;
+			current = newNode.next;
+		}
+		ListRandNode oldCurrent = old;
+		ListRandNode newCurrent = old.next;
+		while (oldCurrent != null) {
+			newCurrent.random = oldCurrent.random.next;
+			oldCurrent = newCurrent.next;
+			newCurrent = oldCurrent.next;
+		}
+		oldCurrent = old;
+		ListRandNode clonedNode = old.next;
+		newCurrent = clonedNode;
+		while (oldCurrent != null && newCurrent != null) {
+			oldCurrent.next = newCurrent.next;
+			oldCurrent = oldCurrent.next;
+			newCurrent.next = oldCurrent.next;
+			newCurrent = newCurrent.next;
+		}
+		return clonedNode;
+	}
+
+	/*
+	 * Clone a linked list with a random pointer (using HashMap)
+	 */
+	public static ListRandNode cloneLLwithRPUsingHM(ListRandNode old) {
+		HashMap<ListRandNode, ListRandNode> map = new HashMap<ListRandNode, ListRandNode>();
+
+		ListRandNode newNode = new ListRandNode(old.data);
+		ListRandNode newCurrent = newNode;
+		map.put(old, newCurrent);
+		ListRandNode current = old.next;
+		// Clone List and store node in HashMap
+		while (current != null) {
+			ListRandNode addCloneNode = new ListRandNode(current.data);
+			newCurrent.next = addCloneNode;
+			newCurrent = newCurrent.next;
+			map.put(current, newCurrent);
+			current = current.next;
+		}
+		current = old;
+		newCurrent = newNode;
+
+		// Add randoms to cloned list
+		while (current != null) {
+			newCurrent.random = map.get(current);
+			current = current.next;
+			newCurrent = newCurrent.next;
+		}
+		return newNode;
 	}
 }
