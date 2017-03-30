@@ -1,10 +1,12 @@
 package helperClasses;
 
-public class MyLinkedList {
-	public ListNode head;
+import java.util.Iterator;
+
+public class MyLinkedList<T> implements Iterable<T> {
+	public ListNode<T> head;
 	
 	public MyLinkedList(){
-		head = new ListNode();
+		head = new ListNode<T>();
 	}
 	
 	
@@ -12,9 +14,9 @@ public class MyLinkedList {
 		return head.next==null;
 	}
 	
-	public void add(String s) {
-		ListNode node=new ListNode(s);
-		ListNode n = this.head;
+	public void add(T o) {
+		ListNode<T> node=new ListNode<T>(o);
+		ListNode<T> n = this.head;
 		while (n.next!=null){
 			n=n.next;
 		}
@@ -24,8 +26,8 @@ public class MyLinkedList {
 	/*
 	 * Make a String a Linked List
 	 */
-	public static MyLinkedList makeStringLL(String s) {
-		MyLinkedList list = new MyLinkedList();
+	public static MyLinkedList<String> makeStringLL(String s) {
+		MyLinkedList<String> list = new MyLinkedList<String>();
 		for (int i=0;i<s.length();i++) {
 			list.add(Character.toString(s.charAt(i)));
 		}
@@ -35,12 +37,29 @@ public class MyLinkedList {
 	/*
 	 * print Linked list
 	 */
-	public static void printLinkedList(MyLinkedList list) {
-		ListNode curr = list.head;
+	public void printLinkedList(MyLinkedList<T> list) {
+		ListNode<T> curr = list.head;
 		while(curr.next!=null){
 			System.out.println(curr.data);
 			curr=curr.next;
 		}
+	}
+
+
+	public int size() {
+		int counter = 0;
+		ListNode<T> current = head;
+		while (current.next!=null){
+			current = current.next;
+			counter++;
+		}
+		return counter;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

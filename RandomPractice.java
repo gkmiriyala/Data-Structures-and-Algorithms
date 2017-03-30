@@ -60,6 +60,10 @@ public class RandomPractice {
 	}
 	
 	/*
+	 *  write the sum of all multiples of 3 or 5 less than 1000
+	 */
+	
+	/*
 	 * print characters from an array in sequence
 	 */
 	public static void printArr(int[] arr) {

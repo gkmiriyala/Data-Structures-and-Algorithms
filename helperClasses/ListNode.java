@@ -9,9 +9,9 @@ package helperClasses;
 //public ListNode(int data, ListNode next)
 //  creates node with given data and given link
 
-public class ListNode {
- public String data;       // data stored in this node
- public ListNode next;  // link to next node in the list
+public class ListNode<T> {
+ public T data;       // data stored in this node
+ public ListNode<T> next;  // link to next node in the list
 
  // post: constructs a node with data 0 and null link
  public ListNode() {
@@ -19,12 +19,12 @@ public class ListNode {
  }
 
  // post: constructs a node with given data and null link
- public ListNode(String data) {
+ public ListNode(T data) {
      this(data, null);
  }
 
  // post: constructs a node with given data and given link
- public ListNode(String data, ListNode next) {
+ public ListNode(T data, ListNode<T> next) {
      this.data = data;
      this.next = next;
  }

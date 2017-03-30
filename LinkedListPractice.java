@@ -7,21 +7,22 @@ import helperClasses.ListRandNode;
 import helperClasses.MyLinkedList;
 import helperClasses.RandLinkedList;
 
-public class LinkedListPractice {
+public class LinkedListPractice<T> {
 	public static void main(String[] args) {
-		MyLinkedList list = MyLinkedList.makeStringLL("String");
-		MyLinkedList.printLinkedList(revLinkedListRecursively(list, list.head.next, list.head));
+		LinkedListPractice<String> linkedListPractice = new LinkedListPractice<String>();
+		MyLinkedList<String> list = MyLinkedList.makeStringLL("String");
+		list.printLinkedList(linkedListPractice.revLinkedListRecursively(list, list.head.next, list.head));
 		// System.out.println(isLinkedListPal(list));
 	}
 
 	/*
 	 * Reverse a Linked List iteratively
 	 */
-	public static MyLinkedList revLinkedList(MyLinkedList list) {
+	public MyLinkedList<T> revLinkedList(MyLinkedList<T> list) {
 		if (list.head == null)
 			return list;
-		ListNode curr = list.head.next;
-		ListNode prev = list.head;
+		ListNode<T> curr = list.head.next;
+		ListNode<T> prev = list.head;
 		while (curr.next != null) {
 			list.head.next = curr.next;
 			curr.next = prev;
@@ -37,7 +38,7 @@ public class LinkedListPractice {
 	/*
 	 * Reverse a Linked List recursively
 	 */
-	public static MyLinkedList revLinkedListRecursively(MyLinkedList list, ListNode curr, ListNode prev) {
+	public MyLinkedList<T> revLinkedListRecursively(MyLinkedList<T> list, ListNode<T> curr, ListNode<T> prev) {
 		if (list.head == null)
 			return list;
 		if (curr.next == null) {
@@ -58,10 +59,11 @@ public class LinkedListPractice {
 	/*
 	 * Determine if a linkedlist is a palindrome
 	 */
-	public static boolean isLinkedListPal(MyLinkedList list) {
-		MyLinkedList revList = revLinkedList(list);
-		ListNode curr1 = list.head.next;
-		ListNode curr2 = revList.head.next;
+	public boolean isLinkedListPal(MyLinkedList<T> list) {
+		LinkedListPractice<T> linkedListPractice = new LinkedListPractice<T>();
+		MyLinkedList<T> revList = linkedListPractice.revLinkedList(list);
+		ListNode<T> curr1 = list.head.next;
+		ListNode<T> curr2 = revList.head.next;
 		while (curr1 != null) {
 			if (!curr1.data.equals(curr2.data))
 				return false;
@@ -76,9 +78,9 @@ public class LinkedListPractice {
 	/*
 	 * Write an algorithm to determine if a linkedlist is circular.
 	 */
-	public boolean isLinkedListCircular(MyLinkedList list) {
-		ListNode slow = list.head;
-		ListNode fast = list.head;
+	public boolean isLinkedListCircular(MyLinkedList<T> list) {
+		ListNode<T> slow = list.head;
+		ListNode<T> fast = list.head;
 		while (slow.next != null && fast.next.next != null) {
 			slow = slow.next;
 			fast = fast.next.next;
@@ -95,9 +97,9 @@ public class LinkedListPractice {
 	 * references back to the beginning. Start moving both references by one.
 	 * They will eventually meet at the node where the circle starts.
 	 */
-	public ListNode LinkedListCirculeMeets(MyLinkedList list) {
-		ListNode slow = list.head;
-		ListNode fast = list.head;
+	public ListNode<T> LinkedListCirculeMeets(MyLinkedList<T> list) {
+		ListNode<T> slow = list.head;
+		ListNode<T> fast = list.head;
 		while (slow.next != null && fast.next.next != null) {
 			slow = slow.next;
 			fast = fast.next.next;
@@ -138,9 +140,9 @@ public class LinkedListPractice {
 	 * Implement an algorithm to find the kth to the last element in a singly
 	 * linked list
 	 */
-	public static ListNode findKthToLastElement(ListNode a, int k) {
-		ListNode kthFromLast = a;
-		ListNode last = a;
+	public ListNode<T> findKthToLastElement(ListNode<T> a, int k) {
+		ListNode<T> kthFromLast = a;
+		ListNode<T> last = a;
 		for (int i = 0; i < k; i++) {
 			last = last.next;
 		}
@@ -154,7 +156,7 @@ public class LinkedListPractice {
 	/*
 	 * Delete a node from a singly linked list given access only to that node
 	 */
-	public static ListNode deleteAccessNodeFromLinkedList(ListNode accessNode) {
+	public ListNode<T> deleteAccessNodeFromLinkedList(ListNode<T> accessNode) {
 		accessNode.data = accessNode.next.data;
 		accessNode.next = accessNode.next.next;
 		return accessNode;
@@ -164,9 +166,9 @@ public class LinkedListPractice {
 	 * Find out if two linked lists intersects and if they do, return the node
 	 * at which they intersect
 	 */
-	public static ListNode whereTwoLinkedListsIntersect(ListNode a, ListNode b) {
-		ListNode c = a;
-		ListNode d = b;
+	public ListNode<T> whereTwoLinkedListsIntersect(ListNode<T> a, ListNode<T> b) {
+		ListNode<T> c = a;
+		ListNode<T> d = b;
 		int countA = 0;
 		int countB = 0;
 		while (a.next != null) {
