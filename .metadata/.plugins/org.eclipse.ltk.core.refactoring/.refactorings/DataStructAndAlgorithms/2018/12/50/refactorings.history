@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;commonInterviewQuestions.TreeInterviewQuestions&apos; to &apos;TreesPractice&apos;&#x0D;&#x0A;- Original project: &apos;DataStructAndAlgorithms&apos;&#x0D;&#x0A;- Original element: &apos;commonInterviewQuestions.TreeInterviewQuestions&apos;&#x0D;&#x0A;- Renamed element: &apos;commonInterviewQuestions.TreesPractice&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;TreeInterviewQuestions&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/Data-Structures-and-Algorithms-practice&lt;commonInterviewQuestions{TreeInterviewQuestions.java[TreeInterviewQuestions" matchStrategy="1" name="TreesPractice" qualified="false" references="true" similarDeclarations="false" stamp="1544484037538" textual="false" version="1.0"/>
+</session>
